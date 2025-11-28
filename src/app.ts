@@ -1,7 +1,7 @@
 import cors from "@fastify/cors";
 import Fastify from "fastify";
+import useMedicationsRoutes from "./modules/medications/medication.routes.ts";
 import userRoutes from "./modules/users/user.router.ts";
-
 import jwtPlugin from "./plugins/jwt.ts";
 import prismaPlugin from "./plugins/prisma.ts";
 import { swaggerPlugin } from "./plugins/swagger.ts";
@@ -16,6 +16,7 @@ export async function buildApp() {
 
   //Rotas
   app.register(userRoutes);
+  app.register(useMedicationsRoutes);
 
   return app;
 }
