@@ -4,11 +4,11 @@ import type { FastifyReply, FastifyRequest } from "fastify";
 export function userController(service: any, fastify: any) {
   return {
     async register(request: FastifyRequest, reply: FastifyReply) {
-      const { email, password, name, role } = request.body as any;
-      const hash = await bcrypt.hash(password, 10);
+      const { email, passwordHash, name, role } = request.body as any;
+      const hash = await bcrypt.hash(passwordHash, 10);
       const user = await service.createUser({
         email,
-        password: hash,
+        passwordHash: hash,
         name,
         role,
       });
